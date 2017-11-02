@@ -39,20 +39,23 @@ public:
 
     // Add a drawable object to the list
     void addDrawableObject(DrawableObject*);
-    void setShaderProgram(Shader*);// Set the current shader program
+    //void setShaderProgram(Shader*);// Set the current shader program
+	void setMainShaderProgram(Shader* mS);
+	void setTexShader(Shader* ts);
+	
 
     // Functions to set up the callbacks
 
     bool setKeyCallback(void (*func)(GLFWwindow*, int, int, int, int))
     {
-	keyFunc = func;
-	return true;
+		keyFunc = func;
+		return true;
     }
 
     bool setMouseClickCallback(void (*func)(GLFWwindow*, int, int, int))
     {
-	clickFunc = func;
-	return true;
+		clickFunc = func;
+		return true;
     }
 
     bool setMouseMotionCallback(void (*func)(GLFWwindow*, double, double))
@@ -69,14 +72,30 @@ public:
 	camera = c;
     }
 
+	/*
     void setShader(Shader* s)
     {
-	shader = s;
+		shader = s;
     }
+	*/
+	void setMainShader (Shader* ms)
+	{
+		mainShader = ms;
+	}
+	
+	void setTexShader (Shader* ts)
+	{
+		textureShader = ts;
+	}
+	
 private:
     vector< DrawableObject* > drawables;// The list of everything to draw
     double curTime;// The current time in the system
-    Shader* shader;// The current shader program
+	//Shader* shader;// The current shader program
+	Shader* mainShader;
+	Shader* textureShader;
+	
+	
     Camera* camera;
     GLFWwindow* window;// The OpenGL context window
 
